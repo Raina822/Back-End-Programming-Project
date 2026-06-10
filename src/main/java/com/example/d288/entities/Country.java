@@ -2,17 +2,22 @@ package com.example.d288.entities;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "countries")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Country {
 
     @Id
@@ -30,4 +35,7 @@ public class Country {
     @Column(name = "last_update")
     @UpdateTimestamp
     private Date last_update;
+
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "country", fetch = FetchType.LAZY)
+    private Set<Division> divisions;
 }
