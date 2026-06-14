@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,7 +32,6 @@ public class Customer {
 
     @Column(name ="address")
     private String address;
-
 
     @Column(name = "postal_code")
     private String postal_code;
