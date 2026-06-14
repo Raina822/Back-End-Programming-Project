@@ -8,11 +8,11 @@ import lombok.Setter;
 @Getter
 public class PurchaseResponse {
 
-    private String orderTackingNumber;
+    private String orderTrackingNumber;
     private StatusType status;
 
-    public PurchaseResponse(String orderTackingNumber){
+    public PurchaseResponse(String orderTrackingNumber){
 
-        this.orderTackingNumber = orderTackingNumber;
+        this.orderTrackingNumber = orderTrackingNumber;
     }
 }
