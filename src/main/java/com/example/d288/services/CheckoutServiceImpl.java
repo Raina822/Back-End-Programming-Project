@@ -31,21 +31,18 @@ public class CheckoutServiceImpl implements CheckoutService{
     @Override
     @Transactional
     public PurchaseResponse placeOrder (Purchase purchase){
-        try {
 
-            Cart cart = purchase.getCart();
-            String orderTrackingNumber = generateOrderTrackingNumber();
-            cart.setOrderTrackingNumber(orderTrackingNumber);
-            Set<CartItem> cartItems = purchase.getCartItems();
-            cartItems.forEach(item -> cart.add(item));
-            cart.setStatus(ordered);
-            Customer customer = purchase.getCustomer();
-            cartRepository.save(cart);
-            customer.add(cart);
-            return new PurchaseResponse(orderTrackingNumber);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Cart does not have any cart items");
-        }
+        Cart cart = purchase.getCart();
+        String orderTrackingNumber = generateOrderTrackingNumber();
+        cart.setOrderTrackingNumber(orderTrackingNumber);
+        cart.setStatus(ordered);
+        Set<CartItem> cartItems = purchase.getCartItems();
+        cartItems.forEach(item -> cart.add(item));
+        cartRepository.save(cart);
+        Customer customer = purchase.getCustomer();
+
+        customer.add(cart);
+        return new PurchaseResponse(orderTrackingNumber);
 
     }
 
